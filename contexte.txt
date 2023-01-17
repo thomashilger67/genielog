@@ -1,0 +1,17 @@
+Le contexte du projet est de créer un webservice de type CRUD.
+Avec une DDR complexe 
+
+On peut partir sur l'idée d'un site de cuisine qui recense plein de recette. 
+
+	+ BDD avec recette, ingrédient, avis, utilisateur..
+	+design pattern à voir le quel
+
+
+Idée d'un application de sport du type Strava : 
+
+	+ une page de garde avec plusieurs indicateurs 
+	+ get : lire les infos 
+	+ Post : jouter une activité physique 
+	+ Put : modifier une activité 
+	+ Delete : supprimer une activité 
+	+ BDD : 
