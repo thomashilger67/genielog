@@ -14,4 +14,6 @@ Idée d'un application de sport du type Strava :
 	+ Post : jouter une activité physique 
 	+ Put : modifier une activité 
 	+ Delete : supprimer une activité 
-	+ BDD : 
+	+ BDD : MongoDB pour stocker des json ( activités physiques)
+
+
