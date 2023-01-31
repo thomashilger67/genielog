@@ -1,10 +1,4 @@
 Le contexte du projet est de créer un webservice de type CRUD.
-Avec une DDR complexe 
-
-On peut partir sur l'idée d'un site de cuisine qui recense plein de recette. 
-
-	+ BDD avec recette, ingrédient, avis, utilisateur..
-	+design pattern à voir le quel
 
 
 Idée d'un application de sport du type Strava : 
@@ -16,4 +10,25 @@ Idée d'un application de sport du type Strava :
 	+ Delete : supprimer une activité 
 	+ BDD : MongoDB pour stocker des json ( activités physiques)
 
+
+BDD : MongoDB on stocke des json : une DB en local => accès : mongod, mongo
+use activities, db.user_activities.find()
+
+
+Etapes : 
+
+     *	créer un ensemble de classe en Factory pour instancier les bonnes 
+	activités : bike, run, cardio, rando, natation, tennis
+
+     * stocker des données d'activités dans une base MongoDB en local puis
+	dans un container docker ? (à revoir cette étape) 
+     
+     * crééer un Webservice avec GET,POST,UPDATE, DELETE en endpoints 
+
+     * mettre en place des statistiques sur la base de données en pages 
+	de gardes du WS
+
+     * dockeriser le WS 
+
+     * un petit frontend tdashboard ? 
 

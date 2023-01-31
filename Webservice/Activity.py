@@ -3,7 +3,6 @@ from abc import ABC, abstractmethod
 
 class Activity(ABC):
     def __init__(self,name,time):
-        self._energy=energy
         self._time=time
         self._name=name
 

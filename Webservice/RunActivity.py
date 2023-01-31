@@ -1,4 +1,4 @@
-from Activity import Activity
+from Webservice.Activity import Activity
 
 
 class RunActivity(Activity):
