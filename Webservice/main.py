@@ -12,7 +12,7 @@ def home():
     bike_monday.set_distance(20)
 
     bstr=bike_monday.display_info()
-    return bstr
+    return bike_monday.__dict__
     
 
 

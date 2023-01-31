@@ -2,16 +2,11 @@ from abc import ABC, abstractmethod
 
 
 class Activity(ABC):
-    def __init__(self,energy,distance,time):
+    def __init__(self,name,time):
         self._energy=energy
-        self._distance=distance
         self._time=time
+        self._name=name
 
-    def set_energy(self,energy):
-        self._energy=energy
-
-    def set_distance(self,distance):
-        self._distance=distance
 
     def set_time(self,time):
         self._time=time
@@ -20,3 +15,6 @@ class Activity(ABC):
     @abstractmethod
     def display_info(self):
         pass 
+
+    def transforme_json(self):
+        return self.__dict__
