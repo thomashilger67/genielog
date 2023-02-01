@@ -25,8 +25,6 @@ def home():
 
     items=collection.find()
 
-    
- 
     #return json.dumps(list(items),default=str)
     return json.loads(json_util.dumps(items))
 

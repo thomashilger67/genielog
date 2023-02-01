@@ -24,6 +24,7 @@ Etapes :
 	dans un container docker ? (à revoir cette étape) 
      
      * crééer un Webservice avec GET,POST,UPDATE, DELETE en endpoints 
+	 		====> revoir les notions de json et bson car le code est lourd 
 
      * mettre en place des statistiques sur la base de données en pages 
 	de gardes du WS  ===> revoir les notions de distance car incohérent entre les classes 
