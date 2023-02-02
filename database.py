@@ -6,7 +6,7 @@ from Webservice.RunActivity import RunActivity
 def get_database():
  
    # Provide the mongodb atlas url to connect python to mongodb using pymongo
-   client = MongoClient("mongodb://localhost:27017/")
+   client = MongoClient("mongodb://172.17.0.2:27017/")
 
    # Create the database for our example (we will use the same database throughout the tutorial
    return client['activities']

@@ -33,3 +33,9 @@ Etapes :
 
      * un petit frontend tdashboard ? 
 
+	 * faire des tests et mettre en place un système de raiseError ou de try pour éviter les crash 
+
+DOCKER : 
+
+	docker pull mongo 
+	docker create -i --name MongoContainer -p 5000:27017 mongo
