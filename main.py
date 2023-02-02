@@ -6,15 +6,13 @@ from database import get_database
 import json 
 import requests
 
-bike_ex1=BikeActivity(name="bike after school",time=1.5,fc=150,energy=None,distance=25,power=None,altitude=None).transforme_json()
+bike_ex1=BikeActivity(name="bike after diner",time=1.5,fc=150,energy=None,distance=25,power=None,altitude=None).transforme_json()
 
 db=get_database()
 collection=db["user_activities"]
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
-
-
 
 
 
@@ -31,7 +29,7 @@ def home():
 
 
 
-@app.route('/add_activity',methods=['GET'])
+@app.route('/add_activity',methods=['GET'])                             #méthode temporaire 
 def launch_requests():
 
     headers = {"Content-Type": "application/json"}
@@ -47,7 +45,7 @@ def add():
     collection.insert_one(json)
     return "data has been recieved by server and is now stored in database!"
 
-@app.route('/update_activity/filter=<filter>&datatoupdate=<new_data>')
+@app.route('/update_activity/filter=<filter>&datatoupdate=<new_data>',methods=['GET'])   #méthode temporaire 
 def get_update(filter,new_data):
     headers={"Content-Type": "application/json"}
     data={"database" : "activities",
@@ -65,6 +63,23 @@ def mongo_update():
     collection.update_one(data["Filter"], {"$set":data["DataToBeUpdated"]})
     return "the activity has been updated!"
 
+
+
+@app.route('/remove_activity/filter=<filter>',methods=['GET'])                          # methode temporaire 
+def remove(filter):
+    headers={"Content-Type": "application/json"}
+    data={"database" : "activities",
+     "collection" : "user_activities", 
+     "Filter": eval(filter)}
+
+
+    r=requests.delete('http://localhost:5000/remove',headers=headers,data=json.dumps(data))
+    return r.text
+
+@app.route('/remove',methods=['DELETE'])
+def mongo_remove():
+    
+    data=flask.request.json
+    collection.delete_one(data["Filter"])
+    return "the activity has been deleted!"
 app.run()   
-
-
