@@ -5,6 +5,6 @@ class SwimActivity(Activity):
         super().__init__(name, time, fc, energy)
         self.distance=distance
         self.speed=self.time/self.distance
-
+        self.type='swim'
     def display_info(self):
         return("Your swim activity has been taking into account!")

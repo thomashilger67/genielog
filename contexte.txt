@@ -18,7 +18,7 @@ use activities, db.user_activities.find()
 Etapes : 
 
      *	créer un ensemble de classe en Factory pour instancier les bonnes 
-	activités : bike, run, cardio, rando, natation, tennis
+	activités : bike, run, cardio, rando, natation, tennis  ===> getter/setter ? 
 
      * stocker des données d'activités dans une base MongoDB en local puis
 	dans un container docker ? (à revoir cette étape) 

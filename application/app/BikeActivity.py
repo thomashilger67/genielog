@@ -7,7 +7,7 @@ class BikeActivity(Activity):
         self.distance= distance
         self.power=power
         self.altitude=altitude
-
+        self.type='bike'
         self.speed=distance/time
         
     def display_info(self):

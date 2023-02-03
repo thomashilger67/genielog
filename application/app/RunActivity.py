@@ -7,6 +7,6 @@ class RunActivity(Activity):
         self.distance=distance
         self.cadence=cadence
         self.speed=self.time/self.distance 
-        
+        self.type='run'
     def display_info(self):
         return("Your run activity has been taking into account!")
