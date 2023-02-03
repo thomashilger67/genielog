@@ -1,12 +1,12 @@
 import flask
-from Webservice.BikeActivity import BikeActivity
+from application.app.BikeActivity import BikeActivity
 from pymongo import MongoClient
 from bson import json_util
-from database import get_database
+from application.webservice.database import get_database
 import json 
 import requests
 
-bike_ex1=BikeActivity(name="bike after diner",time=1.5,fc=150,energy=None,distance=25,power=None,altitude=None).transforme_json()
+bike_ex1=BikeActivity(name="bike after the noon",time=1.5,fc=150,energy=None,distance=25,power=None,altitude=None).transforme_json()
 
 db=get_database()
 collection=db["user_activities"]
@@ -23,8 +23,38 @@ def home():
 
     items=collection.find()
 
-    #return json.dumps(list(items),default=str)
     return json.loads(json_util.dumps(items))
+
+
+
+
+@app.route('/database',methods=['POST','PUT','DELETE'])
+def modify_database():    
+    if flask.request.method=='POST':
+        json = flask.request.json
+        collection.insert_one(json)
+        if flask.Response().status_code ==200:
+            return "data has been recieved by server and is now stored in database!"
+        else: 
+            return {"code error":flask.Response().status_code,"error": flask.Response().status}
+
+    if flask.request.method =='PUT':
+        data = flask.request.json
+        collection.update_one(data["Filter"], {"$set":data["DataToBeUpdated"]})
+        if flask.Response().status_code ==200:
+            return "the activity has been updated!"
+        else: 
+            return {"code error":flask.Response().status_code,"error": flask.Response().status}
+
+
+    if flask.request.method == 'DELETE':
+        data=flask.request.json
+        collection.delete_one(data["Filter"])
+        if flask.Response().status_code ==200:
+            return "the activity has been deleted!"
+        else: 
+            return {"code error":flask.Response().status_code,"error": flask.Response().status}
+
 
 
 
@@ -33,17 +63,10 @@ def home():
 def launch_requests():
 
     headers = {"Content-Type": "application/json"}
-    r=requests.post('http://localhost:5000/post_json',headers=headers, data=bike_ex1)
+    r=requests.post('http://localhost:5000/database',headers=headers, data=bike_ex1)
     return r.text
 
 
-
-
-@app.route('/post_json',methods=['POST'])
-def add():    
-    json = flask.request.json
-    collection.insert_one(json)
-    return "data has been recieved by server and is now stored in database!"
 
 @app.route('/update_activity/filter=<filter>&datatoupdate=<new_data>',methods=['GET'])   #méthode temporaire 
 def get_update(filter,new_data):
@@ -54,14 +77,8 @@ def get_update(filter,new_data):
       "DataToBeUpdated": eval(new_data)}
 
 
-    r=requests.put('http://localhost:5000/update',headers=headers,data=json.dumps(data))
+    r=requests.put('http://localhost:5000/database',headers=headers,data=json.dumps(data))
     return r.text
-@app.route('/update', methods=['PUT'])
-def mongo_update():
-    
-    data = flask.request.json
-    collection.update_one(data["Filter"], {"$set":data["DataToBeUpdated"]})
-    return "the activity has been updated!"
 
 
 
@@ -73,13 +90,7 @@ def remove(filter):
      "Filter": eval(filter)}
 
 
-    r=requests.delete('http://localhost:5000/remove',headers=headers,data=json.dumps(data))
+    r=requests.delete('http://localhost:5000/database',headers=headers,data=json.dumps(data))
     return r.text
 
-@app.route('/remove',methods=['DELETE'])
-def mongo_remove():
-    
-    data=flask.request.json
-    collection.delete_one(data["Filter"])
-    return "the activity has been deleted!"
 app.run()   

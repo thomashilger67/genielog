@@ -1,4 +1,4 @@
-from Webservice.Activity import Activity
+from application.app.Activity import Activity
 
 class SwimActivity(Activity):
     def __init__(self, name, time, fc=70, energy=None,distance=None):

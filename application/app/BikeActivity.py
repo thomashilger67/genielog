@@ -1,4 +1,4 @@
-from Webservice.Activity import Activity
+from application.app.Activity import Activity
 
 
 class BikeActivity(Activity):
