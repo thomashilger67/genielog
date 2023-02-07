@@ -8,7 +8,12 @@ class BikeActivity(Activity):
         self.power=power
         self.altitude=altitude
         self.type='bike'
-        self.speed=distance/time
         
-    def display_info(self):
-        return("Your bike activity has been taking into account!")
+        self.set_speed
+
+        
+    def set_speed(self,display=False):
+        self.speed = self.distance / (self.time /60)
+        if display:
+
+            print( "the average speed is {} km/h ! ".format(self.speed))

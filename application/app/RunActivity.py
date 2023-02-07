@@ -1,12 +1,20 @@
 from application.app.Activity import Activity
-
+import math
 
 class RunActivity(Activity):
     def __init__(self, name, time, fc=70, energy=None,distance=None, cadence=None):
         super().__init__(name, time, fc, energy)
         self.distance=distance
         self.cadence=cadence
-        self.speed=self.time/self.distance 
         self.type='run'
-    def display_info(self):
-        return("Your run activity has been taking into account!")
+        self.set_speed()
+
+    def set_speed(self,display=False):
+        speed = self.time /self.distance
+        deci_speed = (speed - math.floor(speed))*60
+        self.speed = round(math.floor(speed)+ (deci_speed/100),2)
+
+        if display : 
+
+            print("the average speed is {} min/km !".format(self.speed))
+

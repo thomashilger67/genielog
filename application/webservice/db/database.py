@@ -2,8 +2,8 @@ from pymongo import MongoClient
 
 
 def get_database():
- 
-   client = MongoClient("mongodb://172.17.0.2:27017/")
+   uri ='mongodb://db_mongo_bis:27017'
+   client = MongoClient(uri)
 
    return client['activities']
 

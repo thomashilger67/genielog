@@ -2,7 +2,7 @@ import flask
 from application.app.BikeActivity import BikeActivity
 from pymongo import MongoClient
 from bson import json_util
-from application.webservice.database import get_database
+from application.webservice.db.database import get_database
 import json 
 import requests
 
@@ -93,4 +93,6 @@ def remove(filter):
     r=requests.delete('http://localhost:5000/database',headers=headers,data=json.dumps(data))
     return r.text
 
-app.run()   
+
+if __name__ == "__main__":
+    app.run(debug=True)
