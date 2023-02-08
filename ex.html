@@ -1,0 +1,62 @@
+<html>
+<head>
+<style>
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+</style>
+</head>
+<body>
+<div id="tableContainer"></div>
+<script>
+var data = [
+  {
+    "name": "John",
+    "age": 25,
+    "country": "USA"
+  },
+  {
+    "name": "Jane",
+    "city": "London"
+  },
+  {
+    "name": "Jim",
+    "age": 30,
+    "email": "jim@example.com"
+  }
+];
+
+// Fonction pour générer les tableaux HTML pour chaque objet JSON
+function generateTable(data) {
+  var tableContainer = document.getElementById("tableContainer");
+  var table = document.createElement("table");
+  
+  // Pour chaque objet JSON
+  for (var i = 0; i < data.length; i++) {
+    var row = document.createElement("tr");
+    
+    // Pour chaque attribut de l'objet JSON
+    for (var key in data[i]) {
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode(key + ": " + data[i][key]);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+    }
+    
+    table.appendChild(row);
+  }
+  
+  tableContainer.appendChild(table);
+}
+
+generateTable(data);
+</script>
+</body>
+</html>
