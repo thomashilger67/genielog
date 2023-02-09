@@ -1,7 +1,7 @@
 from application.app.Activity import Activity
 
 class SwimActivity(Activity):
-    def __init__(self, name, time, fc=70, energy=None,distance=None):
+    def __init__(self, name, time, fc=70, energy=0,distance=0):
         super().__init__(name, time, fc, energy)
         self.distance=distance
         self.type='swim'

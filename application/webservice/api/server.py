@@ -6,89 +6,11 @@ from bson import json_util
 from application.webservice.db.database import get_database
 import json 
 import requests
-from application.webservice.api.display_view import display_home_count
+from application.webservice.api.display_view import display_home_count, display_data
 from application.webservice.api.display_add import display_add_activity, create_activity,display_end
 from application.webservice.api.display_update import display_update_activity, update_activity
 from application.webservice.api.display_delete import display_delete_activity,delete_activity
-import re 
-html="""<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Sport Tracker</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="http://localhost:5000/">Sport Tracker</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="http://localhost:5000">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:5000/display">afficher les activités</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:5000/add_activity">Ajouter une activité</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:5000/update_activity">modifier une activité </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:5000/delete_activity">supprimer une activité</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <style>
-    table{{
-        width: 100%;
-        border-collapse: collapse;}}
-    
-      
-     th, td {{
-        border: 1px solid black;
-        padding: 8px;
-        text-align: left;}}
-      </style>
-      </head>
-      <body>
-      <div id="tableContainer"></div>
-      <script>
-      var data = {code};
-      
-      // Fonction pour générer les tableaux HTML pour chaque objet JSON
-      function generateTable(data) {{
-        var tableContainer = document.getElementById("tableContainer");
-        var table = document.createElement("table");
-        
-        // Pour chaque objet JSON
-        for (var i = 0; i < data.length; i++) {{
-          var row = document.createElement("tr");
-          
-          // Pour chaque attribut de l'objet JSON
-          for (var key in data[i]) {{
-            var cell = document.createElement("td");
-            var cellText = document.createTextNode(key + ": " + data[i][key]);
-            cell.appendChild(cellText);
-            row.appendChild(cell);
-          }}
-          
-          table.appendChild(row);
-        }}
-        
-        tableContainer.appendChild(table);
-      }}
-      
-      generateTable(data);
-      </script>
-      </body>
-      </html>
-      """
+
 def launch():
 
     db=get_database()
@@ -107,11 +29,10 @@ def launch():
             
     @app.route('/display', methods=['GET'])
     def display():
-        items=collection.find()
-        #html = open('application/webservice/api/templates/display.html',"r")
-        #resu=html.read()
-        #print(list(items))
-        resu=html.format(code=list(items))
+        items=list(collection.find())
+        [item.pop("_id",None)for item in items]
+
+        resu=display_data(items)
         print(resu)
         return resu 
 
@@ -209,5 +130,5 @@ def launch():
         
 
 
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000,debug=True)
 

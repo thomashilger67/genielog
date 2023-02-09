@@ -2,7 +2,7 @@ from application.app.Activity import Activity
 
 
 class BikeActivity(Activity):
-    def __init__(self, name, time, fc=70, energy=None, distance=None, power= None, altitude=None ):
+    def __init__(self, name, time, fc=70, energy=0, distance=0, power= 0, altitude=0 ):
         super().__init__(name, time, fc, energy)
         self.distance= distance
         self.power=power

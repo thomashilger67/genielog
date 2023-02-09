@@ -5,11 +5,11 @@ from datetime import datetime
 from fastapi.encoders import jsonable_encoder
 
 class Activity(ABC):
-    def __init__(self,name,time,fc=70,energy=None):
+    def __init__(self,name,time,fc=70,energy=0):
         self.name=name
         self.time=time
         self.fc=fc
-        if energy is None:
+        if energy==0:
             self.energy = ((fc /200)-0.25)*1700
         else : 
             self.energy=energy

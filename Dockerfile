@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 5000
 
-ENTRYPOINT [ "flask", "--app","main", "run", "--host=0.0.0.0"]
+ENTRYPOINT [ "python3","main.py"]

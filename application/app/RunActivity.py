@@ -2,7 +2,7 @@ from application.app.Activity import Activity
 import math
 
 class RunActivity(Activity):
-    def __init__(self, name, time, fc=70, energy=None,distance=None, cadence=None):
+    def __init__(self, name, time, fc=70, energy=0,distance=0, cadence=0):
         super().__init__(name, time, fc, energy)
         self.distance=distance
         self.cadence=cadence
