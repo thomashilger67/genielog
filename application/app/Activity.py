@@ -5,6 +5,10 @@ from datetime import datetime
 from fastapi.encoders import jsonable_encoder
 
 class Activity(ABC):
+    """
+    classe abstraite pour représenter une activité sportive 
+    
+    """
     def __init__(self,name,time,fc=70,energy=0):
         self.name=name
         self.time=time
@@ -23,6 +27,9 @@ class Activity(ABC):
         pass 
 
     def transforme_json(self):
+        """
+        Transforme notre objet Activity en un format json 
+        """
         return json.dumps(self.__dict__,default=str)
 
     

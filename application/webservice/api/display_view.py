@@ -1,29 +1,63 @@
 import re 
 
 def count(collection,filter={}):
-    return collection.count_documents(filter)
+  """
+  fonction qui compte le nombre de document dans une collection mongodb sur laquelle on peut appliquer une filtre 
+
+  Parameters:
+  ------------------------
+  collection : Collection MongoDB
+  filter : dictionnaire {filter : value}
+
+  Returns : 
+  -------------------------
+  int : nombre de documents  
+  """
+  return collection.count_documents(filter)
 
 
 def display_home_count(collection):
+  """
+  fonction renvoie un string html pour l'api
 
-    count_all=count(collection)
-    count_bike=count(collection,filter={"type":"bike"})
-    count_run=count(collection,filter={"type":"run"})
-    count_cardio=count(collection,filter={"type":"cardio"})
-    count_swim=count(collection,filter={"type":"swim"})
+  Parameters:
+  ------------------------
+  collection : Collection MongoDB
 
-    html = open('application/webservice/api/templates/example.html',"r")
-    resu=html.read()
-    resu=re.sub(r'{{ count_tot }}',str(count_all),resu)
-    resu=re.sub(r'{{ count_bike }}',str(count_bike),resu)
-    resu=re.sub(r'{{ count_run }}',str(count_run),resu)
-    resu=re.sub(r'{{ count_cardio }}',str(count_cardio),resu)
-    resu=re.sub(r'{{ count_swim }}',str(count_swim),resu)
+  Returns : 
+  -------------------------
+  str : html 
+  """
+  count_all=count(collection)
+  count_bike=count(collection,filter={"type":"bike"})
+  count_run=count(collection,filter={"type":"run"})
+  count_cardio=count(collection,filter={"type":"cardio"})
+  count_swim=count(collection,filter={"type":"swim"})
 
-    return resu 
+  html = open('application/webservice/api/templates/home.html',"r")
+  resu=html.read()
+  resu=re.sub(r'{{ count_tot }}',str(count_all),resu)
+  resu=re.sub(r'{{ count_bike }}',str(count_bike),resu)
+  resu=re.sub(r'{{ count_run }}',str(count_run),resu)
+  resu=re.sub(r'{{ count_cardio }}',str(count_cardio),resu)
+  resu=re.sub(r'{{ count_swim }}',str(count_swim),resu)
+
+  return resu 
 
 def display_data(list):
-    html1="""<!DOCTYPE html>
+
+  """
+  fonction renvoie un string html pour l'api en injectant nos données 
+
+  Parameters:
+  ------------------------
+  list : liste de dictionnaire
+
+  Returns : 
+  -------------------------
+  str : html 
+  """
+  html1="""<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -72,7 +106,7 @@ def display_data(list):
       <div id="tableContainer"></div>
       <script>
       var data ="""
-    html2=""";
+  html2=""";
       
       
       // Fonction pour générer les tableaux HTML pour chaque objet JSON
@@ -103,4 +137,4 @@ def display_data(list):
       </body>
       </html>
       """
-    return html1 + str(list) + html2
+  return html1 + str(list) + html2

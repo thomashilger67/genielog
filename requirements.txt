@@ -2,3 +2,4 @@ requests
 flask
 pymongo
 fastapi 
+pytest

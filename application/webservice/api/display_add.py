@@ -4,11 +4,32 @@ from application.app.RunActivity import RunActivity
 from application.app.SwimActivity import SwimActivity
 from application.app.CardioActivity import CardioActivity
 
-def display_add_activity(collection):
+def display_add_activity():
+    """
+  fonction qui charge un template html 
+
+  Returns : 
+  -------------------------
+  str : html 
+  """
     html = open('application/webservice/api/templates/form.html',"r")
     resu=html.read()
     return resu 
+
+
 def create_activity(type,nom,time,fc,energy,distance,power,altitude,cadence):
+    """
+    fonction qui créee les bonnes instances d'activité en fonction du type d'activité 
+
+    Parameters 
+    --------------------
+    type: str Bike, Run, Cardio, Swim 
+
+    Returns 
+    --------------------
+    Activity 
+    
+    """
     if type =='Bike':
         return BikeActivity(nom,time,fc,energy,distance,power,altitude).transforme_json()
     if type =='Run':
@@ -19,6 +40,14 @@ def create_activity(type,nom,time,fc,energy,distance,power,altitude,cadence):
         return SwimActivity(nom,time,fc,energy,distance).transforme_json()
 
 def display_end():
+    """
+    fonction qui renvoie un code html sous forme de str 
+
+    Returns 
+    --------------------
+    str : html
+    
+    """
     return """<html>
   <head>
     <meta charset="UTF-8">
