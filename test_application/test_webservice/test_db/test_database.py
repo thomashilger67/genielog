@@ -4,11 +4,11 @@ from application.webservice.db.database import insert_doc
 mongo = create_mongo_fixture()
 
 def test_insert_doc(mongo):
-    json={"name": "John", "address": "Highway 37"}
+    json={"name": "vélo après les cours", "distance": "20"}
     collection=mongo['user_activities']
     insert_doc(collection,json)
 
     returned = collection.find_one()
     returned.pop("_id",None)
 
-    assert returned == {"name": "John", "address": "Highway 37"}
+    assert returned == {"name": "vélo après les cours", "distance": "20"}
