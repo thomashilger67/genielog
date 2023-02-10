@@ -28,7 +28,7 @@ Le plus de Sport Tracker ? La possibilité d'avoir des statistiques sur vos perf
  ## Documentation 
 
  ### Technologie utilisée
- Sport Tracker est codé en Python avec le package `flask` pour réaliser le webservice. L'ensemble est mis dans un conteneur Docker. Pour la persistance des données, on utilise une base de données NoSQL MongoDB, égalemnt mise dans un conteneur Docker. 
+ Sport Tracker est codé en Python avec le package `flask` pour réaliser le webservice. L'ensemble est mis dans un conteneur Docker. Pour la persistance des données, on utilise une base de données NoSQL MongoDB, égalemnt mise dans un conteneur Docker. Pour l'interface web, des templates html sont utilisés. Enfin un pipeline CI/CD couplé à des test PyTest est mis en place pour garantir la fonctionnalité du code.
 
 ### Design Pattern 
 4 différents types d'ativités sont supportées : vélo, course à pied, natation et cardio. Nous utilisation un design pattern de type factory pour encoder ces 4 types d'objets différents. Il y a classe abstaite Activity, de laquelle BikeActivity, RunActivity, SwimActivity et CardioActivity héritent. 
