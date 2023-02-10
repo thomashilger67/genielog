@@ -3,7 +3,7 @@ from application.app.BikeActivity import BikeActivity
 from application.app.RunActivity import RunActivity
 from pymongo import MongoClient
 from bson import json_util
-from application.webservice.db.database import get_database
+from application.webservice.db.database import get_database, insert_doc
 import json 
 import requests
 from application.webservice.api.display_view import display_home_count, display_data
@@ -19,7 +19,7 @@ def launch():
     app = flask.Flask(__name__)
     app.config["DEBUG"] = True
 
-
+    
 
     @app.route('/',methods=['GET'])
     def home():
@@ -58,7 +58,8 @@ def launch():
       """    
       if flask.request.method=='POST':
           json = flask.request.json
-          collection.insert_one(json)
+          insert_doc(collection,json)
+          #collection.insert_one(json)
           if flask.Response().status_code ==200:
               return "L'activité à bien été ajouté!"
           else: 
@@ -155,7 +156,8 @@ def launch():
       return display_add_activity()
  
         
+    @app.route('/test',methods=['GET'])
+    def index():
+      return "Hello World!"
 
-
-    app.run(host="0.0.0.0", port=5000,debug=True)
-
+    return app

@@ -3,3 +3,5 @@ flask
 pymongo
 fastapi 
 pytest
+pytest-mock-resources
+python-on-whales

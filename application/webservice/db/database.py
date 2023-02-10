@@ -11,5 +11,7 @@ def get_database():
 
    return client['activities']
 
+def insert_doc(collection,json):
+   collection.insert_one(json)
 
 
