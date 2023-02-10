@@ -1,15 +1,3 @@
-Le contexte du projet est de créer un webservice de type CRUD.
-
-
-Idée d'un application de sport du type Strava : 
-
-	+ une page de garde avec plusieurs indicateurs 
-	+ get : lire les infos 
-	+ Post : jouter une activité physique 
-	+ Put : modifier une activité 
-	+ Delete : supprimer une activité 
-	+ BDD : MongoDB pour stocker des json ( activités physiques)
-
 
 BDD : MongoDB on stocke des json : une DB en local => accès : mongod, mongo
 use activities, db.user_activities.find()
@@ -18,18 +6,15 @@ use activities, db.user_activities.find()
 Etapes : 
 
      *	créer un ensemble de classe en Factory pour instancier les bonnes 
-	activités : bike, run, cardio, rando, natation, tennis
-
-     * stocker des données d'activités dans une base MongoDB en local puis
-	dans un container docker ? (à revoir cette étape) 
-     
-     * crééer un Webservice avec GET,POST,UPDATE, DELETE en endpoints 
-	 		====> revoir les notions de json et bson car le code est lourd 
+	activités : bike, run, cardio, rando, natation, tennis  ===> getter/setter ? 
 
      * mettre en place des statistiques sur la base de données en pages 
-	de gardes du WS  ===> revoir les notions de distance car incohérent entre les classes 
+	de gardes du WS  ===> 										 
 
-     * dockeriser le WS 
 
-     * un petit frontend tdashboard ? 
+
+DOCKER : 
+
+	docker pull mongo 
+	docker create -it --name MongoContainer -p 27017:27017 mongo
 

@@ -1,4 +1,7 @@
 requests
 flask
 pymongo
-json 
+fastapi 
+pytest
+pytest-mock-resources
+python-on-whales

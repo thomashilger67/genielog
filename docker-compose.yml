@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  db_mongo_bis:
+    image: mongo:5.0
+    container_name: mongo_ws
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./application/webservice/db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongodbws_volume:/data/db
+
+
+  backend:
+    build: .
+    ports:
+      - '5000:5000'
+    container_name: flask_api_container
+    depends_on:
+      - db_mongo_bis

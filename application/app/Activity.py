@@ -5,11 +5,15 @@ from datetime import datetime
 from fastapi.encoders import jsonable_encoder
 
 class Activity(ABC):
-    def __init__(self,name,time,fc=70,energy=None):
+    """
+    classe abstraite pour représenter une activité sportive 
+    
+    """
+    def __init__(self,name,time,fc=70,energy=0):
         self.name=name
         self.time=time
         self.fc=fc
-        if energy is None:
+        if energy==0:
             self.energy = ((fc /200)-0.25)*1700
         else : 
             self.energy=energy
@@ -19,19 +23,15 @@ class Activity(ABC):
         
 
     @abstractmethod
-    def display_info(self):
+    def set_speed(self,display=False):
         pass 
 
     def transforme_json(self):
+        """
+        Transforme notre objet Activity en un format json 
+        """
         return json.dumps(self.__dict__,default=str)
+
     
 
-    def to_json(self):
-        return jsonable_encoder(self, exclude_none=True)
-
-    def to_bson(self):
-        data = self.dict(by_alias=True, exclude_none=True)
-        if data["_id"] is None:
-            data.pop("_id")
-        return data
         

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sport Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="http://localhost:5000/">Sport Tracker</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="http://localhost:5000">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:5000/display">afficher les activités</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:5000/add_activity">Ajouter une activité</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:5000/update_activity">modifier une activité </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="http://localhost:5000/delete_activity">supprimer une activité</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid mt-5">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Statistiques</h5>
+              <p class="card-text">Nombre d'activités au total : {{ count_tot }}</p>
+              <p class="card-text">Nombre d'activités de vélo : {{ count_bike }}</p>
+              <p class="card-text">Nombre d'activités de course à pied : {{ count_run }}</p>
+              <p class="card-text">Nombre d'activités de cardio : {{ count_cardio }}</p>
+              <p class="card-text">Nombre d'activités de natation : {{ count_swim }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384
+ 
