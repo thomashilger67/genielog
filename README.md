@@ -34,3 +34,5 @@ Le plus de Sport Tracker ? La possibilité d'avoir des statistiques sur vos perf
 4 différents types d'ativités sont supportées : vélo, course à pied, natation et cardio. Nous utilisation un design pattern de type factory pour encoder ces 4 types d'objets différents. Il y a classe abstaite Activity, de laquelle BikeActivity, RunActivity, SwimActivity et CardioActivity héritent. 
 
 Chaque classes filles possèdent des attributs différents. Ainsi leur stockage dans une base de données relationnelles seraient peu adapté. L'utilisation de MongoDB est adéquate grâce à sa bonne gestion des documents n'ayant pas la même structure.
+
+Auteur : Thomas Hilger (dans le cadre de l'évaluation de la matière génie logiciel)
